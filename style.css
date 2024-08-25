@@ -72,7 +72,7 @@ body {
 }
 
 #total::before {
-    content: "price : ";
+    content: "Total : ";
 }
 
 #btnCreate,
@@ -98,7 +98,10 @@ body {
 
 .searchBtn button {
     width: 40%;
+}
 
+small {
+    font-size: 20px;
 }
 
 table {
@@ -112,5 +115,5 @@ th {
 
 td,
 tr {
-    padding: 5px;
+    padding: 5px 0;
 }

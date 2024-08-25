@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    outline: none;
+    border: 0;
+}
+
+body {
+    background-color: #222;
+    color: #eeee;
+}
+
+.cruds {
+    width: 80%;
+    margin: auto;
+    /* background-color: rgb(110, 106, 106); */
+    text-align: center;
+}
+
+.cruds .head {
+    padding: 15px 0px;
+}
+
+.cruds .head h1 {
+    text-transform: uppercase;
+    font-size: 40px;
+    padding-bottom: 15px;
+}
+
+.cruds .head p {
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+/* inputs */
+
+.inputs input,
+.outputs input,
+.outputs button {
+    width: 100%;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: black;
+    color: #fff;
+    font-size: 20px;
+
+}
+
+.titleInp input::placeholder {
+    color: rgb(72, 69, 69);
+    font-size: 20px;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+}
+
+.price input {
+    width: 20%;
+    margin-right: 15px;
+}
+
+#total {
+    margin-bottom: 15px;
+    padding: 10px 4px;
+    background-color: #a00d02;
+    border-radius: 5px;
+}
+
+#total::before {
+    content: "price : ";
+}
+
+#btnCreate,
+#btnSearch,
+.searchBtn button,
+#tablebtn {
+    cursor: pointer;
+    background-color: #4f115a;
+    border-radius: 20px;
+}
+
+#btnCreate:hover,
+#btnSearch:hover,
+.searchBtn button:hover {
+    background-color: #51025f;
+    letter-spacing: 2px;
+}
+
+.searchBtn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchBtn button {
+    width: 40%;
+
+}
+
+table {
+    width: 100%;
+    margin: 10px 0px;
+}
+
+th {
+    text-transform: uppercase;
+}
+
+td,
+tr {
+    padding: 5px;
+}

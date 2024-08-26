@@ -9,6 +9,9 @@ let category = document.getElementById('category');
 let create = document.getElementById("btnCreate");
 let btnDelete = document.getElementById("btnDelete");
 
+let mood = "create";
+
+let index;
 // localStorage.removeItem("products")
 
 
@@ -46,14 +49,22 @@ create.addEventListener("click", function () {
         count: count.value,
         category: category.value,
     }
-    if (count.value > 1) {
-        let i = 0;
-        while (i < count.value) {
-            data = [...data, newData];
-            i++;
+    if (mood == "create") {
+        if (count.value > 1) {
+            let i = 0;
+            while (i < count.value) {
+                data = [...data, newData];
+                i++;
+            }
         }
+        else data = [...data, newData];
+    } else {
+        data[index] = newData;
+        mood = "create";
+        create.value = "create";
+        create.style.display = "block";
+        count.style.display = "block";
     }
-    else data = [...data, newData];
     localStorage.setItem('products', JSON.stringify(data));
     clearData();
     showData();
@@ -77,7 +88,7 @@ function showData() {
     for (let i = 0; i < data.length; i++) {
         tableContent += `
         <tr>
-        <td>${i + 1}</td>
+        <td>${i}</td>
         <td>${data[i].title}</td>
         <td>${data[i].price}</td>
         <td>${data[i].taxes}</td>
@@ -86,6 +97,7 @@ function showData() {
         <td>${data[i].total}</td>
         <td>${data[i].category}</td>
         <td><input type="button" id="tablebtn" value="Delete" onClick="deleteProd(${i})"/></td>
+        <td><input type="button" id="tablebtn" value="Update" onClick="updateProd(${i})"/></td>
         </tr>`;
     }
 
@@ -96,6 +108,8 @@ function showData() {
         btnDelete.value = `Delete All (${data.length})`;
     }
     else btnDelete.style.display = "none";
+
+    getPrice();
 }
 
 
@@ -113,13 +127,39 @@ function deleteProd(indexOfprod) {
 }
 
 function deleteAll() {
-
-    data.splice(0);
-    localStorage.setItem("products", JSON.stringify(data));
-    showData();
-
+    let confirmDelete = window.confirm("are you sure");
+    if (confirmDelete) {
+        data.splice(0);
+        localStorage.setItem("products", JSON.stringify(data));
+        showData();
+    }
 
     console.log(data.length);
 }
+
+function updateProd(i) {
+    title.value = data[i].title;
+    price.value = data[i].price;
+    taxes.value = data[i].taxes;
+    ads.value = data[i].ads;
+    discount.value = data[i].discount;
+    total.value = data[i].total;
+    category.value = data[i].category;
+    getPrice();
+
+    window.scroll({
+        top: 0,
+        behavior: "smooth",
+    });
+
+    count.style.display = "none";
+    create.value = "Update";
+    mood = "update";
+
+    index = i;
+
+}
+
+
 
 showData();

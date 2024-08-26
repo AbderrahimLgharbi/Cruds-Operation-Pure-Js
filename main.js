@@ -145,13 +145,13 @@ function deleteProd(indexOfprod) {
 }
 
 function deleteAll() {
-    // let confirmDelete = window.confirm("are you sure");
-    // if (confirmDelete) {
-    data.splice(0);
-    localStorage.clear();
-    showData();
+    let confirmDelete = window.confirm("are you sure");
+    if (confirmDelete) {
+        data.splice(0);
+        localStorage.clear();
+        showData();
 
-
+    }
     console.log(data.length);
 }
 

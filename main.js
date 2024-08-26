@@ -46,7 +46,14 @@ create.addEventListener("click", function () {
         count: count.value,
         category: category.value,
     }
-    data = [...data, newData];
+    if (count.value > 1) {
+        let i = 0;
+        while (i < count.value) {
+            data = [...data, newData];
+            i++;
+        }
+    }
+    else data = [...data, newData];
     localStorage.setItem('products', JSON.stringify(data));
     clearData();
     showData();

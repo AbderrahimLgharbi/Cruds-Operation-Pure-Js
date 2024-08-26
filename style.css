@@ -76,7 +76,7 @@ body {
 }
 
 #btnCreate,
-#btnSearch,
+#btnDelete,
 .searchBtn button,
 #tablebtn {
     cursor: pointer;
@@ -85,7 +85,7 @@ body {
 }
 
 #btnCreate:hover,
-#btnSearch:hover,
+#btnDelete:hover,
 .searchBtn button:hover {
     background-color: #51025f;
     letter-spacing: 2px;

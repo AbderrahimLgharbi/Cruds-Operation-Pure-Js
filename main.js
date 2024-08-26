@@ -8,8 +8,10 @@ let count = document.getElementById('count');
 let category = document.getElementById('category');
 let create = document.getElementById("btnCreate");
 let btnDelete = document.getElementById("btnDelete");
+let search = document.getElementById("search");
 
 let mood = "create";
+let searchmood;
 
 let index;
 // localStorage.removeItem("products")
@@ -82,6 +84,22 @@ function clearData() {
     category.value = "";
 }
 
+// function dataTable(i) {
+//     return `
+//     <tr>
+//     <td>${i}</td>
+//     <td>${data[i].title}</td>
+//     <td>${data[i].price}</td>
+//     <td>${data[i].taxes}</td>
+//     <td>${data[i].ads}</td>
+//     <td>${data[i].discount}</td>
+//     <td>${data[i].total}</td>
+//     <td>${data[i].category}</td>
+//     <td><input type="button" id="tablebtn" value="Delete" onClick="deleteProd(${i})"/></td>
+//     <td><input type="button" id="tablebtn" value="Update" onClick="updateProd(${i})"/></td>
+//     </tr>`
+// }
+
 function showData() {
     let tableContent = '';
 
@@ -127,12 +145,12 @@ function deleteProd(indexOfprod) {
 }
 
 function deleteAll() {
-    let confirmDelete = window.confirm("are you sure");
-    if (confirmDelete) {
-        data.splice(0);
-        localStorage.setItem("products", JSON.stringify(data));
-        showData();
-    }
+    // let confirmDelete = window.confirm("are you sure");
+    // if (confirmDelete) {
+    data.splice(0);
+    localStorage.clear();
+    showData();
+
 
     console.log(data.length);
 }
@@ -160,6 +178,68 @@ function updateProd(i) {
 
 }
 
-
-
 showData();
+
+//search
+
+function searchProd(id) {
+    searchmood = id;
+    if (searchmood == "btntitle") {
+        searchmood = "title";
+    }
+    else {
+        searchmood = "category";
+    }
+    search.placeholder = "Search By " + searchmood;
+    search.focus();
+    search.value = ""
+    showData();
+
+}
+
+function searchData(val) {
+    let tableContent = "";
+    for (let i = 0; i < data.length; i++) {
+
+        if (searchmood == "title") {
+            if (data[i].title.toLowerCase().includes(val.toLowerCase())) {
+                tableContent += `
+                <tr>
+                <td>${i}</td>
+                <td>${data[i].title}</td>
+                <td>${data[i].price}</td>
+                <td>${data[i].taxes}</td>
+                <td>${data[i].ads}</td>
+                <td>${data[i].discount}</td>
+                <td>${data[i].total}</td>
+                <td>${data[i].category}</td>
+                <td><input type="button" id="tablebtn" value="Delete" onClick="deleteProd(${i})"/></td>
+                <td><input type="button" id="tablebtn" value="Update" onClick="updateProd(${i})"/></td>
+                </tr>`;
+            }
+
+
+        }
+        else {
+            if (data[i].category.toLowerCase().includes(val.toLowerCase())) {
+                tableContent += `
+                <tr>
+                <td>${i}</td>
+                <td>${data[i].title}</td>
+                <td>${data[i].price}</td>
+                <td>${data[i].taxes}</td>
+                <td>${data[i].ads}</td>
+                <td>${data[i].discount}</td>
+                <td>${data[i].total}</td>
+                <td>${data[i].category}</td>
+                <td><input type="button" id="tablebtn" value="Delete" onClick="deleteProd(${i})"/></td>
+                <td><input type="button" id="tablebtn" value="Update" onClick="updateProd(${i})"/></td>
+                </tr>`;
+            }
+        }
+    }
+
+    document.getElementById("tbody").innerHTML = tableContent;
+
+}
+

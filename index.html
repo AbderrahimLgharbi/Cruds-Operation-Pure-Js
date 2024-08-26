@@ -44,10 +44,10 @@
         <!-- output -->
         <div class="outputs">
             <div class="searchVlock">
-                <input type="text" placeholder="search" />
+                <input onkeyup="searchData(this.value)" type="text" placeholder="search" id="search" />
                 <div class="searchBtn">
-                    <button id="btntitle">Search By Title</button>
-                    <button id="btncategory">Search By Category</button>
+                    <button id="btntitle" onclick="searchProd(this.id)">Search By Title</button>
+                    <button id="btncategory" onclick="searchProd(this.id)">Search By Category</button>
                 </div>
                 <input type="button" id="btnDelete" onclick="deleteAll()" />
             </div>
